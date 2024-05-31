@@ -17,7 +17,7 @@ const AllCampaigns = () => {
     navigate('/campaigninfo')
   }
 
-  const edit = useNavigate
+  const edit = useNavigate()
   const handleEdit = (e) => {
     e.preventDefault()
     edit('/campaigninfo')
@@ -96,7 +96,7 @@ const AllCampaigns = () => {
                       <FontAwesomeIcon
                         icon={faPen}
                         className="text-gray-500 mx-2 cursor-pointer"
-                        onCanPlay={handleEdit}
+                        onClick={handleEdit}
                       />
                       <FontAwesomeIcon
                         icon={faTrash}
