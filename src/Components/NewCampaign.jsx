@@ -31,6 +31,7 @@ const NewCampaign = () => {
     dailyDigest: "", 
     campaign: ''
   });
+  const [loading, setLoading]= useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -56,9 +57,13 @@ const NewCampaign = () => {
     try {
       const response = await axios.post('https://infinion-test-int-test.azurewebsites.net/api/Campaign', {...addCampaigne, linkedKeywords: addCampaigne.linkedKeywords.filter(keyword => keyword) 
     });
-      if (response.status === 200) {
+      if (response) {
+        setLoading(!loading)
         console.log('Campaign created successfully');
+        alert('Campaign Created Successfully!')
+
       }
+
     } catch (error) {
       console.error('Error creating campaign:', error);
     }
@@ -168,8 +173,9 @@ const NewCampaign = () => {
             <button
               className="w-[196px] h-[40px] border mt-12 py-6 bg-buttonColor text-white border-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 hover:text-buttonColor cursor-pointer"
               onClick={handleCreate}
+              disabled={loading}
             >
-              Create Campaign
+              {loading ? 'loading' : 'Create Campaign'}
             </button>
           </div>
         </div>

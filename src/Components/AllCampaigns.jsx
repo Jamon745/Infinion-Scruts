@@ -6,7 +6,7 @@ import { faEye, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { GET_CAMPAIGNS } from "../utils/Constant";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const AllCampaigns = () => {
   const [campaignLogs, setCampaignLogs] = useState([]);
@@ -17,11 +17,8 @@ const AllCampaigns = () => {
     navigate('/campaigninfo')
   }
 
-  const edit = useNavigate()
-  const handleEdit = (e) => {
-    e.preventDefault()
-    edit('/campaigninfo')
-  }
+ 
+
 
   useEffect(() => {
     axios
@@ -81,7 +78,7 @@ const AllCampaigns = () => {
             </thead>
             <tbody className="ml-10">
               {campaignLogs.map(
-                ({ campaignName, startDate, campaignStatus }, index) => (
+                ({id, campaignName, startDate, campaignStatus }, index) => (
                   <tr key={index} className="ml-6">
                     <td >{index + 1}</td>
                     <td>{campaignName}</td>
@@ -93,11 +90,12 @@ const AllCampaigns = () => {
                         className="text-gray-500 mx-2 cursor-pointer"
                         onClick={handleView}
                       />
+                      <Link to={`/campaigninfo/${id}`}> 
                       <FontAwesomeIcon
                         icon={faPen}
                         className="text-gray-500 mx-2 cursor-pointer"
-                        onClick={handleEdit}
                       />
+                      </Link>
                       <FontAwesomeIcon
                         icon={faTrash}
                         className="text-gray-500 mx-2 cursor-pointer"

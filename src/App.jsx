@@ -14,7 +14,7 @@ function App() {
             <Route path='/' element={<Overview />} />
             <Route path='/allcampaigns' element={<AllCampaigns />} />
             <Route path='/newcampaign' element={<NewCampaign />} />
-            <Route path='/campaigninfo' element={<CampaignInfo />} />
+            <Route path='/campaigninfo/:id' element={<CampaignInfo />} />
 
 
 
