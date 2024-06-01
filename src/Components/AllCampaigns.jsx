@@ -14,11 +14,8 @@ const AllCampaigns = () => {
   const navigate =useNavigate()
   const handleView = (e) => {
     e.preventDefault()
-    navigate('/campaigninfo')
+    navigate('/campaign')
   }
-
- 
-
 
   useEffect(() => {
     axios
@@ -90,7 +87,7 @@ const AllCampaigns = () => {
                         className="text-gray-500 mx-2 cursor-pointer"
                         onClick={handleView}
                       />
-                      <Link to={`/campaigninfo/${id}`}> 
+                      <Link to={`/campaign/${id}`}> 
                       <FontAwesomeIcon
                         icon={faPen}
                         className="text-gray-500 mx-2 cursor-pointer"

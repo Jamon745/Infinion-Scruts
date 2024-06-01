@@ -1,10 +1,10 @@
+import { useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router';
-import Popup from './completetionmodal';
+import Popup from './PopUp';
 import { useNavigate } from 'react-router';
-import { useState } from 'react';
 
-const Modal = ({ isOpen, onClose, campaignName }) => {
+const Modal = ({ isOpen, onClose, campaignName, onConfirm }) => {
   const { id } = useParams();
   const navigate = useNavigate()
   const [isDeleting, setIsDeleting] = useState(false);

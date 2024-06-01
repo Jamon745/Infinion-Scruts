@@ -61,9 +61,9 @@ const NewCampaign = () => {
         setLoading(!loading)
         console.log('Campaign created successfully');
         alert('Campaign Created Successfully!')
-
-      }
-
+      }else
+      alert('Campaign not Successful!')
+      
     } catch (error) {
       console.error('Error creating campaign:', error);
     }
