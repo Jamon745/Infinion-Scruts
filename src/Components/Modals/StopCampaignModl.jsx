@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useParams } from 'react-router';
-import Popup from './completetionmodal';
+import Popup from './PopUp';
 import { useNavigate } from 'react-router';
 import { useState } from 'react';
 

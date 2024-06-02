@@ -6,15 +6,21 @@ import { faEye, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { GET_CAMPAIGNS } from "../utils/Constant";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 
 const AllCampaigns = () => {
   const [campaignLogs, setCampaignLogs] = useState([]);
+  const {id} = useParams();
 
   const navigate =useNavigate()
   const handleView = (e) => {
     e.preventDefault()
     navigate('/campaign')
+  }
+
+  const handleDelete = (e) => {
+    e.preventDefault()
+    navigate(`/StopCampaignModl/${id}`)
   }
 
   useEffect(() => {
@@ -93,11 +99,14 @@ const AllCampaigns = () => {
                         className="text-gray-500 mx-2 cursor-pointer"
                       />
                       </Link>
+                     
                       <FontAwesomeIcon
                         icon={faTrash}
                         className="text-gray-500 mx-2 cursor-pointer"
-                      />
-                    </td>
+                        onClick={handleDelete}
+                        />
+                      
+                        </td>
                   </tr>
                 )
               )}

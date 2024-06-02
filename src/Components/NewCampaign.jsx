@@ -3,23 +3,23 @@ import axios from 'axios';
 import SideBar from './SideBar';
 import NavBar from './NavBar'
 
-const ToggleSwitch = ({ isOn, handleToggle }) => {
-  return (
-    <div
-      className={`relative inline-block w-12 h-6 align-middle select-none transition duration-200 ease-in ${
-        isOn ? 'bg-purple-700' : 'bg-gray-300'
-      } rounded-full`}
-    >
-      <input
-        type="checkbox"
-        checked={isOn}
-        onChange={handleToggle}
-        className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
-        style={{ left: isOn ? 'calc(100% - 1.5rem)' : '0.25rem' }}
-      />
-    </div>
-  );
-};
+// const ToggleSwitch = ({ isOn, handleToggle }) => {
+//   return (
+//     <div
+//       className={`relative inline-block w-12 h-6 align-middle select-none transition duration-200 ease-in ${
+//         isOn ? 'bg-purple-700' : 'bg-gray-300'
+//       } rounded-full`}
+//     >
+//       <input
+//         type="checkbox"
+//         checked={isOn}
+//         onChange={handleToggle}
+//         className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
+//         style={{ left: isOn ? 'calc(100% - 1.5rem)' : '0.25rem' }}
+//       />
+//     </div>
+//   );
+// };
 const NewCampaign = () => {
   const [addCampaigne, setAddCampaigne] = useState({
     campaignName: "",
@@ -46,12 +46,12 @@ const NewCampaign = () => {
       linkedKeywords: e.target.value.split(',').map(keyword => keyword.trim())
     });
   };
-  const handleToggle = () => {
-    setAddCampaigne(prevState => ({
-      ...prevState,
-      digestCampaign: !prevState.digestCampaign
-    }));
-  };
+  // const handleToggle = () => {
+  //   setAddCampaigne(prevState => ({
+  //     ...prevState,
+  //     digestCampaign: !prevState.digestCampaign
+  //   }));
+  // };
 
   const handleCreate = async () => {
     try {
@@ -61,8 +61,7 @@ const NewCampaign = () => {
         setLoading(!loading)
         console.log('Campaign created successfully');
         alert('Campaign Created Successfully!')
-      }else
-      alert('Campaign not Successful!')
+      }
       
     } catch (error) {
       console.error('Error creating campaign:', error);
@@ -133,7 +132,7 @@ const NewCampaign = () => {
             <p className="-ml-64 mr-72">
               Want to receive daily digest on the campaign?
             </p>
-            <ToggleSwitch isOn={addCampaigne.digestCampaign} handleToggle={handleToggle} />
+            {/* <ToggleSwitch isOn={addCampaigne.digestCampaign} handleToggle={handleToggle} /> */}
 
           </div>
           <div className="mt-6">
