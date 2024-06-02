@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
-import Modal from './Modals/DeleteModal';
+import Modal from './Modals/StopCampaignModl';
 import SideBar from "./SideBar";
 import NavBar from "./NavBar";
+
 
 
 const CampaignInfo = () => {

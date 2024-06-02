@@ -1,6 +1,4 @@
 const Popup = ({ isVisible, onClose, campaignName }) => {
-
-
       return (
         <div>
           {isVisible && (

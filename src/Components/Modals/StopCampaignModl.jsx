@@ -13,7 +13,7 @@ const Modal = ({ isOpen, onClose, campaignName }) => {
   const handleDelete = async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.delete('https://infinion-test-int-test.azurewebsites.net/api/Campaign/${id}');
+      const response = await axios.delete(`https://infinion-test-int-test.azurewebsites.net/api/Campaign/${id}`);
       console.log('res', response)
         setDeleteComplete(!deleteComplete);
         console.log('hello', deleteComplete)
