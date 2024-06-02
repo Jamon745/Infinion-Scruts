@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { GET_CAMPAIGNS } from "../utils/Constant";
 import { useNavigate, Link} from "react-router-dom";
 
+
 const AllCampaigns = () => {
   const [campaignLogs, setCampaignLogs] = useState([]);
 

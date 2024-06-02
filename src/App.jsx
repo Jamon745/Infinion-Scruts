@@ -19,6 +19,7 @@ function App() {
             <Route path="/campaign/:id" element={<CampaignInfo />} />
             <Route path="/stopcampaign/:id" element={<StopCampaignModl />} />
          </Routes>
+
         
       
     
