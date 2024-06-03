@@ -5,7 +5,7 @@ import ProfileIcon from "../assets/Ellipse 1.png";
 const NavBar = () => {
   return (
     <div>
-      <div className="border-b-2 w-[1076px] h-[92px] flex items-center justify-between px-3">
+      <div className="border-b-2 w-[1176px] h-[92px] flex items-center justify-between px-3">
         <div className="relative">
           <input
             type="text"
@@ -16,9 +16,9 @@ const NavBar = () => {
             <FaSearch className="text-gray-400" />
           </div>
         </div>
-        <div className="flex items-center justify-center gap-2">
-          <CiBellOn />
-          <img src={ProfileIcon} alt="" className="w-[32px] h-[32px]" />
+        <div className="flex items-center justify-center gap-1">
+          <CiBellOn className="w-[30px] h-[30px]" />
+          <img src={ProfileIcon} alt="" className="w-[55px] h-[55px]" />
           <select name="" id="">
             <option value="">BigTech</option>
           </select>
