@@ -5,7 +5,7 @@ const Popup = ({ isVisible, campaignName} ) => {
   const navigate = useNavigate()
   const ReturnHome = (e) => {
     e.preventDefault()
-    navigate('/campaigns')
+    navigate('/allcampaigns')
   }
   return (
     <div>

@@ -95,7 +95,7 @@ const AllCampaigns = () => {
                         className="text-gray-500 mx-2 cursor-pointer"
                       />
                       </Link>
-                      <Link to={`/stopcampaign/${id}`}> 
+                      <Link to={`/campaign/${id}`}> 
                         <FontAwesomeIcon
                           icon={faTrash}
                           className="text-gray-500 mx-2 cursor-pointer"
