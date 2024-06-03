@@ -1,15 +1,12 @@
+
 import { useState } from 'react';
 import axios from 'axios';
 import SideBar from './SideBar';
-import NavBar from './NavBar'
+import NavBar from './NavBar';
 
 const ToggleSwitch = ({ isOn, handleToggle }) => {
   return (
-    <div
-      className={`relative inline-block w-12 h-6 align-middle select-none transition duration-200 ease-in ${
-        isOn ? 'bg-purple-700' : 'bg-gray-300'
-      } rounded-full`}
-    >
+    <div className={`relative inline-block w-12 h-6 align-middle select-none transition duration-200 ease-in ${isOn ? 'bg-purple-700' : 'bg-gray-300'} rounded-full`}>
       <input
         type="checkbox"
         checked={isOn}
@@ -20,34 +17,36 @@ const ToggleSwitch = ({ isOn, handleToggle }) => {
     </div>
   );
 };
+
 const NewCampaign = () => {
-  const [addCampaigne, setAddCampaigne] = useState({
+  const [addCampaign, setAddCampaign] = useState({
     campaignName: "",
     campaignDescription: "",
     startDate: "",
     endDate: "",
     digestCampaign: true,
-    linkedKeywords: [""],
+    linkedKeywords: [],
     dailyDigest: "", 
-    campaign: ''
   });
-  const [loading, setLoading]= useState(false)
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setAddCampaigne({
-      ...addCampaigne,
+    setAddCampaign(prevState => ({
+      ...prevState,
       [name]: value
-    });
+    }));
   };
+
   const handleKeywordsChange = (e) => {
-    setAddCampaigne({
-      ...addCampaigne,
+    setAddCampaign(prevState => ({
+      ...prevState,
       linkedKeywords: e.target.value.split(',').map(keyword => keyword.trim())
-    });
+    }));
   };
+
   const handleToggle = () => {
-    setAddCampaigne(prevState => ({
+    setAddCampaign(prevState => ({
       ...prevState,
       digestCampaign: !prevState.digestCampaign
     }));
@@ -55,16 +54,25 @@ const NewCampaign = () => {
 
   const handleCreate = async () => {
     try {
-      const response = await axios.post('https://infinion-test-int-test.azurewebsites.net/api/Campaign', {...addCampaigne, linkedKeywords: addCampaigne.linkedKeywords.filter(keyword => keyword) 
-    });
-      if (response) {
-        setLoading(!loading)
+      setLoading(true);
+      const response = await axios.post('https://infinion-test-int-test.azurewebsites.net/api/Campaign', addCampaign);
+      if (response.status === 200) {
         console.log('Campaign created successfully');
-        alert('Campaign Created Successfully!')
+        // Reset form fields after successful creation if needed
+        setAddCampaign({
+          campaignName: "",
+          campaignDescription: "",
+          startDate: "",
+          endDate: "",
+          digestCampaign: true,
+          linkedKeywords: [],
+          dailyDigest: "", 
+        });
       }
-      
     } catch (error) {
       console.error('Error creating campaign:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -84,7 +92,7 @@ const NewCampaign = () => {
               type="text"
               name="campaignName"
               placeholder="e.g The Future is now"
-              value={addCampaigne.campaignName}
+              value={addCampaign.campaignName}
               onChange={handleChange}
               className="w-[684px] px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
             />
@@ -97,7 +105,7 @@ const NewCampaign = () => {
             <textarea
               name="campaignDescription"
               placeholder="Please add a description to your campaign"
-              value={addCampaigne.campaignDescription}
+              value={addCampaign.campaignDescription}
               onChange={handleChange}
               className="w-[684px] px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
             />
@@ -111,7 +119,7 @@ const NewCampaign = () => {
               <input
                 type="date"
                 name="startDate"
-                value={addCampaigne.startDate}
+                value={addCampaign.startDate}
                 onChange={handleChange}
                 className="w-72 px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
               />
@@ -122,7 +130,7 @@ const NewCampaign = () => {
               <input
                 type="date"
                 name="endDate"
-                value={addCampaigne.endDate}
+                value={addCampaign.endDate}
                 onChange={handleChange}
                 className="w-72 px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
               />
@@ -132,7 +140,7 @@ const NewCampaign = () => {
             <p className="-ml-64 mr-72">
               Want to receive daily digest on the campaign?
             </p>
-            <ToggleSwitch isOn={addCampaigne.digestCampaign} handleToggle={handleToggle} />
+            <ToggleSwitch isOn={addCampaign.digestCampaign} handleToggle={handleToggle} />
 
           </div>
           <div className="mt-6">
@@ -143,7 +151,7 @@ const NewCampaign = () => {
             <textarea
               name="linkedKeywords"
               placeholder="To add keywords, type your keyword and press enter"
-              value={addCampaigne.linkedKeywords.join(', ')}  // Display as comma-separated string
+              value={addCampaign.linkedKeywords.join(', ')}  // Display as comma-separated string
               onChange={handleKeywordsChange}
               className="w-[684px] px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
             />
@@ -155,7 +163,7 @@ const NewCampaign = () => {
             <br />
             <select
               name="dailyDigest"
-              value={addCampaigne.dailyDigest}
+              value={addCampaign.dailyDigest}
               onChange={handleChange}
               className="border border-gray-400 rounded-md"
             >
@@ -166,9 +174,9 @@ const NewCampaign = () => {
             </select>
           </div>
           <div className="flex gap-4 ml-8">
-            <div className="w-[196px] h-[40px] border mt-12 py-6 text-buttonColor border-buttonColor rounded-lg flex items-center justify-center hover:bg-buttonColor hover:text-white cursor-pointer">
+            <button className="w-[196px] h-[40px] border mt-12 py-6 text-buttonColor border-buttonColor rounded-lg flex items-center justify-center hover:bg-buttonColor hover:text-white cursor-pointer" onClick={onclose}>
               Cancel
-            </div>
+            </button>
             <button
               className="w-[196px] h-[40px] border mt-12 py-6 bg-buttonColor text-white border-gray-200 rounded-lg flex items-center justify-center hover:bg-gray-300 hover:text-buttonColor cursor-pointer"
               onClick={handleCreate}
