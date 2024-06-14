@@ -7,7 +7,7 @@ import Button from "./Button";
 
 const Overview = () => {
   return (
-    <div className="flex">
+    <div className="flex max-w-[100vw]">
       <SideBar />
       <div>
         <NavBar />
